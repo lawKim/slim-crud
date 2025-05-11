@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 use Slim\Factory\AppFactory;
 
 use Slim\Middleware\MethodOverrideMiddleware; 
@@ -19,11 +22,14 @@ try {
 }
 */ 
 
-$app = AppFactory::create();
+$app = AppFactory::create(); 
 
-// Add these middlewares IN ORDER: 
-$app->add(new MethodOverrideMiddleware()); // Then detect method override
-$app->addRoutingMiddleware();              // Finally, handle routing
+// Reference: https://www.slimframework.com/docs/v4/middleware/method-overriding.html
+// Add RoutingMiddleware before we add the MethodOverrideMiddleware so the method is overridden before routing is done
+$app->addRoutingMiddleware();
+// Add MethodOverride middleware
+$methodOverrideMiddleware = new MethodOverrideMiddleware();
+$app->add($methodOverrideMiddleware);
 
 $app->setBasePath('/slim');
 

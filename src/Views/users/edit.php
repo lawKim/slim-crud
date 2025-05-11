@@ -24,7 +24,7 @@
         </div>
     <?php endif; ?>
  
-    <form method="POST" action="/slim/users/<?= $user->id ?>/edit">
+    <form method="POST" action="/slim/users/<?= $user->id ?>/edit" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT"> 
         <label>Name:</label><br>
         <input type="text" name="name" value="<?= htmlspecialchars($user->name) ?>" required><br><br>
