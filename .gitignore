@@ -1,0 +1,11 @@
+# Ignore the vendor directory
+/vendor/
+
+# Optional: Ignore environment and IDE files
+.env
+*.log
+*.cache
+*.lock
+.DS_Store
+.idea/
+.vscode/
